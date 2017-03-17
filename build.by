@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+#
+# @filename : build.py
+# @author	: Manuel A. Rodriguez (manuel@rdrsss.io)
+# @breif	: Build script to create docker image, setup network,
+#                 and bring up and tear down a riak cluster.
+
+
+def generate_config():
+    # Consult
+    # http://docs.basho.com/riak/kv/2.2.0/configuring/reference/
+    # for reference to config values
+
+    cfg = "log.console = file\n"
+    cfg += "log.console.level = info\n"
+    cfg += "log.console.file = $(platform_log_dir)/console.log\n"
+    cfg += "log.error.file = $(platform_log_dir)/error.log\n"
+    cfg += "log.syslog = off\n"
+    cfg += "log.crash = on\n"
+    cfg += "log.crash.file = $(platform_log_dir)/crash.log\n"
+
+
+if __name__ == '__main__':
+    print "here"
