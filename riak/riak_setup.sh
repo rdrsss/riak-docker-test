@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+mkdir /data
+
 # Open file descriptor limit
 ulimit -n 65536
 
