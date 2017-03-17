@@ -18,7 +18,47 @@ def generate_config():
     cfg += "log.syslog = off\n"
     cfg += "log.crash = on\n"
     cfg += "log.crash.file = $(platform_log_dir)/crash.log\n"
+    cfg += "log.crash.maximum_message_size = 64KB\n"
+    cfg += "log.crash.size = 10MB\n"
+    cfg += "log.crash.rotation = $D0\n"
+    cfg += "log.crash.rotation.keep = 5\n"
+    cfg += "nodename = riak@0.0.0.0\n"
+    cfg += "distributed_cookie = riak\n"
+    cfg += "erlang.async_threads = 64\n"
+    cfg += "erlang.max_ports = 65536\n"
+    cfg += "dtrace = off\n"
+    cfg += "platform_bin_dir = ./bin\n"
+    cfg += "platform_data_dir = ./data\n"
+    cfg += "platform_etc_dir = ./etc\n"
+    cfg += "platform_lib_dir = ./lib\n"
+    cfg += "platform_log_dir = ./log\n"
+    cfg += "listener.http.internal = 0.0.0.0:8098\n"
+    cfg += "listener.protobuf.internal = 127.0.0.1:8087\n"
+    cfg += "anti_entropy = active\n"
+    cfg += "storage_backend = bitcask\n"
+    cfg += "object.format = 1\n"
+    cfg += "object.size.warning_threshold = 5MB\n"
+    cfg += "object.size.maximum = 50MB\n"
+    cfg += "object.siblings.warning_threshold = 25\n"
+    cfg += "object.siblings.maximum = 100\n"
+    cfg += "bitcask.data_root = $(platform_data_dir)/bitcask\n"
+    cfg += "bitcask.io_mode = erlang\n"
+    cfg += "riak_control = off\n"
+    cfg += "riak_control.auth.mode = off\n"
+    cfg += "leveldb.maximum_memory.percent = 70\n"
+    cfg += "search = off\n"
+    cfg += "search.solr.start_timeout = 30s\n"
+    cfg += "search.solr.port = 8093\n"
+    cfg += "search.solr.jmx_port = 8985\n"
+    cfg += "search.solr.jvm_options ="
+    cfg += " -d64 -Xms1g -Xmx1g -XX:+UseStringCache -XX:+UseCompressedOops\n"
+
+    # Write to file
+    f = open("riak.conf", "w")
+    f.write(cfg)
+    f.close()
 
 
 if __name__ == '__main__':
     print "here"
+    generate_config()
